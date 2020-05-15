@@ -25,7 +25,7 @@ const Smurf = ({ isFetching, fetchSmurf, Smurfs }) => {
 }
 
 const mapStateToProps = state => {
-    console.log(state);
+    // console.log(state);
     return {
         isFetching: state.isFetching,
         Smurfs: [
