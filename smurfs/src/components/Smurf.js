@@ -9,6 +9,8 @@ const Smurf = ({ isFetching, fetchSmurf, Smurfs }) => {
         fetchSmurf();
     }, [fetchSmurf]);
 
+    
+
     return (
         <div>
             {isFetching && <h2>Fetching Smurf..</h2>}
@@ -19,7 +21,6 @@ const Smurf = ({ isFetching, fetchSmurf, Smurfs }) => {
                     <h2>Height: {Smurfs[0].height}</h2>
                 </div>
             )}
-
         </div>
     )
 }

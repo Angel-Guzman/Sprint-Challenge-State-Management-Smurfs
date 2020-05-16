@@ -1,11 +1,11 @@
-import { FETCH_SMURF_START, FETCH_SMURF_SUCCESS, POST_SMURF }  from '../actions';
+import { FETCH_SMURF_START, FETCH_SMURF_SUCCESS, POST_SMURF, HANDLE_FORM }  from '../actions';
 
 const initialState = {
     isFetching: false,
     NewSmurf: {
-        newName: null,
-        newAge: null,
-        newHeight: null
+        name: null,
+        age: null,
+        height: null
     },
     Smurfs: [
         {
@@ -30,11 +30,19 @@ export const reducer = (state = initialState, action) => {
                     isFetching: false,
                     Smurfs: [action.payload]
             }
-        case POST_SMURF:
-            console.log('adding smurf', action.payload)
+        case HANDLE_FORM:
             return {
                 ...state,
-                Smurfs: [...state.Smurfs, action.payload]
+                    NewSmurf: {
+                        ...state.NewSmurf,
+                        [action.payload.target.name]: action.payload.target.value
+                    }
+            }
+        case POST_SMURF:
+            // console.log('adding smurf', action.payload)
+            return {
+                ...state,
+                Smurfs: action.payload
             }
         default: 
             return state;
