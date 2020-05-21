@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fetchSmurf, postSmurf, handleFormChanges } from '../store/actions';
+import axios from 'axios';
 
 const Smurf = ({ isFetching, fetchSmurf, postSmurf, handleFormChanges, Smurfs, NewSmurf }) => {
 
@@ -13,7 +14,7 @@ const Smurf = ({ isFetching, fetchSmurf, postSmurf, handleFormChanges, Smurfs, N
             {isFetching && <h2>Fetching Smurf..</h2>}
             {!isFetching && Smurfs && (
                 Smurfs.map(smurf => (
-                    <div>
+                    <div className='smurf'>
                         <h2>Name: {smurf.name}</h2>
                         <h2>Age: {smurf.age}</h2>
                         <h2>Height: {smurf.height}</h2>
