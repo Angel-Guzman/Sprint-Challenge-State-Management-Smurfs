@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchSmurf, postSmurf, } from '../store/actions';
+import { fetchSmurf, postSmurf, handleFormChanges } from '../store/actions';
 
-const Smurf = ({ isFetching, fetchSmurf, Smurfs }) => {
+const Smurf = ({ isFetching, fetchSmurf, postSmurf, handleFormChanges, Smurfs, NewSmurf }) => {
 
     useEffect(() => {
         fetchSmurf();
@@ -20,6 +20,16 @@ const Smurf = ({ isFetching, fetchSmurf, Smurfs }) => {
                     </div>
                 ))
                 )}
+            <div>
+                <input value={NewSmurf.name} name='name' onChange={handleFormChanges} type='text'></input><br />
+                <input value={NewSmurf.age} name='age' onChange={handleFormChanges} type='text'></input><br />
+                <input value={NewSmurf.height} name='height' onChange={handleFormChanges} type='text'></input><br />
+                <button 
+                onClick={() => {
+                    postSmurf(NewSmurf)
+                }}
+                >Submit</button>
+            </div>
         </div>
     )
 }
@@ -39,5 +49,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { fetchSmurf }
+    { fetchSmurf, postSmurf, handleFormChanges }
 )(Smurf);
